@@ -3,6 +3,8 @@ import org.junit.jupiter.api.Test;
 
 public class RadioTest {
 
+//    Тесты для радиостанций
+
     @Test
     public void shouldSetCurrentRadioStation() {
         Radio rad = new Radio();
@@ -39,6 +41,8 @@ public class RadioTest {
         Assertions.assertEquals(expected, actual);
     }
 
+//    Следующая радиостанция
+
     @Test
     public void shouldSwapToNextRadioStation() {
         Radio rad = new Radio();
@@ -47,19 +51,6 @@ public class RadioTest {
         rad.setNextRadioStation();
 
         int expected = 2;
-        int actual = rad.getCurrentRadioStation();
-
-        Assertions.assertEquals(expected, actual);
-    }
-
-    @Test
-    public void shouldSwapToPreviousRadioStation() {
-        Radio rad = new Radio();
-
-        rad.setCurrentRadioStation(2);
-        rad.setPreviousRadioStation();
-
-        int expected = 1;
         int actual = rad.getCurrentRadioStation();
 
         Assertions.assertEquals(expected, actual);
@@ -78,6 +69,21 @@ public class RadioTest {
         Assertions.assertEquals(expected, actual);
     }
 
+//    Предыидущая радиостанция
+
+    @Test
+    public void shouldSwapToPreviousRadioStation() {
+        Radio rad = new Radio();
+
+        rad.setCurrentRadioStation(2);
+        rad.setPreviousRadioStation();
+
+        int expected = 1;
+        int actual = rad.getCurrentRadioStation();
+
+        Assertions.assertEquals(expected, actual);
+    }
+
     @Test
     public void shouldCycleBellowZero() {
         Radio rad = new Radio();
@@ -90,6 +96,8 @@ public class RadioTest {
 
         Assertions.assertEquals(expected, actual);
     }
+
+//    Тесты для громкости
 
     @Test
     public void shouldSetCurrentVolume() {
@@ -104,7 +112,7 @@ public class RadioTest {
     }
 
     @Test
-    public void shouldNotAcceptNumbersAboveOneHundred() {
+    public void shouldNotAcceptNumbersAboveOneHundredForVolume() {
         Radio rad = new Radio();
 
         rad.setCurrentVolume(101);
@@ -127,6 +135,8 @@ public class RadioTest {
         Assertions.assertEquals(expected, actual);
     }
 
+//    Увеличить громкость
+
     @Test
     public void shouldIncreaseVolume() {
         Radio rad = new Radio();
@@ -139,6 +149,21 @@ public class RadioTest {
 
         Assertions.assertEquals(expected, actual);
     }
+
+    @Test
+    public void shouldNotIncreaseVolumeAboveOneHundred() {
+        Radio rad = new Radio();
+
+        rad.setCurrentVolume(100);
+        rad.increaseVolume();
+
+        int expected = 100;
+        int actual = rad.getCurrentVolume();
+
+        Assertions.assertEquals(expected, actual);
+    }
+
+//    Уменьшить громкость
 
     @Test
     public void shouldDecreaseVolume() {
@@ -154,20 +179,7 @@ public class RadioTest {
     }
 
     @Test
-    public void shouldCycleVolumeAboveOneHundred() {
-        Radio rad = new Radio();
-
-        rad.setCurrentVolume(100);
-        rad.increaseVolume();
-
-        int expected = 100;
-        int actual = rad.getCurrentVolume();
-
-        Assertions.assertEquals(expected, actual);
-    }
-
-    @Test
-    public void shouldCycleVolumeBellowZero() {
+    public void shouldNotDecreaseVolumeBellowZero() {
         Radio rad = new Radio();
 
         rad.setCurrentVolume(0);
