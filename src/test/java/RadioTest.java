@@ -7,11 +7,11 @@ public class RadioTest {
 
     @Test
     public void shouldSetCurrentRadioStation() {
-        Radio rad = new Radio();
+        Radio rad = new Radio(30);
 
-        rad.setCurrentRadioStation(5);
+        rad.setCurrentRadioStation(25);
 
-        int expected = 5;
+        int expected = 25;
         int actual = rad.getCurrentRadioStation();
 
         Assertions.assertEquals(expected, actual);
